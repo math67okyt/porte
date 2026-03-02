@@ -61,6 +61,7 @@ bool checkUID() {
 // Ouvre la serrure 5 secondes
 void ouvrirSerrure() {
   //my changes are here 
+  serial.begin(9600);
   digitalWrite(LOCK_PIN, HIGH); // ouvrir
   delay(5000);                 // 5 s
   digitalWrite(LOCK_PIN, LOW);  // fermer
