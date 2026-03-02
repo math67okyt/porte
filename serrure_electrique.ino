@@ -28,7 +28,7 @@ void loop() {
   if (!rfid.PICC_ReadCardSerial()) return;
 
   Serial.print("UID : ");
-
+  
   // Affichage UID
   for (byte i = 0; i < rfid.uid.size; i++) {
     Serial.print(rfid.uid.uidByte[i], HEX);
@@ -60,7 +60,7 @@ bool checkUID() {
 
 // Ouvre la serrure 5 secondes
 void ouvrirSerrure() {
-
+  //my changes are here 
   digitalWrite(LOCK_PIN, HIGH); // ouvrir
   delay(5000);                 // 5 s
   digitalWrite(LOCK_PIN, LOW);  // fermer
