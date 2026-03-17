@@ -4,16 +4,18 @@
 #define SS_PIN 10
 #define RST_PIN 9
 #define LOCK_PIN 7   // Broche pour relais/servo
+#define LED_VERTE 4
 
 MFRC522 rfid(SS_PIN, RST_PIN);
 
-// UID autorisé (à modifier avec ton badge)
+// UID autorisé 
 byte authorizedUID[4] = {0xDE, 0xAD, 0xBE, 0xEF};
 
 void setup() {
   Serial.begin(9600);
   SPI.begin();
   rfid.PCD_Init();
+  pinMODE(LED_VERTE, OUTPUT);
 
   pinMode(LOCK_PIN, OUTPUT);
   digitalWrite(LOCK_PIN, LOW); // serrure fermée
@@ -39,6 +41,7 @@ void loop() {
   // Vérification UID
   if (checkUID()) {
     Serial.println("Accès autorisé");
+    LED_VERTE
     ouvrirSerrure();
   } else {
     Serial.println("Accès refusé");
@@ -59,8 +62,7 @@ bool checkUID() {
 }
 
 // Ouvre la serrure 5 secondes
-void ouvrirSerrure() {
-  //my changes are here 
+void ouvrirSerrure() { 
   digitalWrite(LOCK_PIN, HIGH); // ouvrir
   delay(5000);                 // 5 s
   digitalWrite(LOCK_PIN, LOW);  // fermer
