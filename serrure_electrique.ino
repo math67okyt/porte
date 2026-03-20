@@ -5,6 +5,7 @@
 #define RST_PIN 9
 #define LOCK_PIN 7   // Broche pour relais/servo
 #define LED_VERTE 4
+#define LED_ROUGE 5
 
 MFRC522 rfid(SS_PIN, RST_PIN);
 
@@ -41,10 +42,11 @@ void loop() {
   // Vérification UID
   if (checkUID()) {
     Serial.println("Accès autorisé");
-    LED_VERTE
+    digitalWrite(LED_VERTE, HIGH);
     ouvrirSerrure();
   } else {
     Serial.println("Accès refusé");
+    digitalWrite(LED_ROUGE, HIGH);
   }
 
   rfid.PICC_HaltA();
