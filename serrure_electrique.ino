@@ -16,7 +16,7 @@ void setup() {
   Serial.begin(9600);
   SPI.begin();
   rfid.PCD_Init();
-  pinMODE(LED_VERTE, OUTPUT);
+  pinMode(LED_VERTE, OUTPUT);
 
   pinMode(LOCK_PIN, OUTPUT);
   digitalWrite(LOCK_PIN, LOW); // serrure fermée
