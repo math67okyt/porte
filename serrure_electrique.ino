@@ -47,6 +47,9 @@ void loop() {
   } else {
     Serial.println("Accès refusé");
     digitalWrite(LED_ROUGE, HIGH);
+    delay(2000);
+    digitalWrite(LED_VERTE, LOW);
+    digitalWrite(LED_ROUGE, LOW);
   }
 
   rfid.PICC_HaltA();
